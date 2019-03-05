@@ -1,4 +1,5 @@
 import {
+  SHOOT,
   MOVE_OBJECTS,
   START_GAME,
   LEADERBOARD_LOADED,
@@ -6,8 +7,10 @@ import {
 } from '../actions';
 import moveObjects from './moveObjects';
 import startGame from './startGame';
+import shoot from './shoot';
 
 const initialGameState = {
+  cannonBalls: [],
   started: false,
   kills: 0,
   lives: 3,
@@ -32,6 +35,8 @@ export default (state = initialState, action) => {
       return { ...state, players: action.players };
     case LOGGED_IN:
       return { ...state, currentPlayer: action.player };
+    case SHOOT:
+      return shoot(state, action);
     default:
       return state;
   }
