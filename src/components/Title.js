@@ -5,7 +5,7 @@ const Title = () => {
   const textStyle = {
     fontFamily: '"Joti One", cursive',
     fontSize: 120,
-    fill: '#cbca62'
+    fill: '#cbca62',
   };
 
   const aliensLineCurve = {
