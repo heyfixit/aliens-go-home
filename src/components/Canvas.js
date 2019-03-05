@@ -11,7 +11,8 @@ import FlyingObject from './FlyingObject';
 import Heart from './Heart';
 import StartGame from './StartGame';
 import Title from './Title';
-import Login from './Login';
+// import Login from './Login';
+import Leaderboard from './Leaderboard';
 
 const Canvas = props => {
   const gameHeight = 1200;
@@ -44,7 +45,11 @@ const Canvas = props => {
         <g>
           <StartGame onClick={() => props.startGame()} />
           <Title />
-          <Login authenticate={signIn} />
+          <Leaderboard
+            currentPlayer={props.currentPlayer}
+            authenticate={signIn}
+            leaderboard={props.players}
+          />
         </g>
       )}
 
@@ -72,7 +77,26 @@ Canvas.propTypes = {
         id: PropTypes.number.isRequired
       })
     ).isRequired
-  }).isRequired
+  }).isRequired,
+  currentPlayer: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    maxScore: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired
+  }),
+  players: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      maxScore: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      picture: PropTypes.string.isRequired
+    })
+  )
+};
+
+Canvas.defaultProps = {
+  currentPlayer: null,
+  players: null
 };
 
 export default Canvas;
