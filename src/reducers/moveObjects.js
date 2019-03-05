@@ -41,6 +41,8 @@ export default (state, action) => {
   cannonBalls = cannonBalls.filter(cannonBall => cannonBallsDestroyed.indexOf(cannonBall.id));
   flyingObjects = flyingObjects.filter(flyingDisc => flyingDiscsDestroyed.indexOf(flyingDisc.id));
 
+  const kills = state.gameState.kills + flyingDiscsDestroyed.length;
+
   return {
     ...newState,
     gameState: {
@@ -48,7 +50,8 @@ export default (state, action) => {
       flyingObjects,
       cannonBalls,
       lives,
-      started
+      started,
+      kills
     },
     angle
   };
