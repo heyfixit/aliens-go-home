@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 import App from '../App';
 import {
+  shoot,
   leaderboardLoaded,
   loggedIn,
   moveObjects,
@@ -16,6 +17,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  shoot: mousePosition => dispatch(shoot(mousePosition)),
   moveObjects: mousePosition => dispatch(moveObjects(mousePosition)),
   startGame: () => dispatch(startGame()),
   leaderboardLoaded: players => dispatch(leaderboardLoaded(players)),

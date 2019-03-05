@@ -1,4 +1,4 @@
-import { calculateAngle } from './utils/formula';
+import { calculateAngle } from '../utils/formulas';
 
 export default (state, action) => {
   if (!state.gameState.started) return state;

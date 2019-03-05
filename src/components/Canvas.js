@@ -11,7 +11,6 @@ import FlyingObject from './FlyingObject';
 import Heart from './Heart';
 import StartGame from './StartGame';
 import Title from './Title';
-// import Login from './Login';
 import Leaderboard from './Leaderboard';
 
 const Canvas = props => {
@@ -28,6 +27,7 @@ const Canvas = props => {
       id="aliens-go-home-canvas"
       viewBox={viewBox}
       onMouseMove={props.trackMouse}
+      onClick={props.shoot}
     >
       <defs>
         <filter id="shadow">
@@ -36,9 +36,11 @@ const Canvas = props => {
       </defs>
       <Sky />
       <Ground />
+      {props.gameState.cannonBalls.map(cannonBall => (
+        <CannonBall key={cannonBall.id} position={cannonBall.position} />
+      ))}
       <CannonPipe rotation={props.angle} />
       <CannonBase />
-      <CannonBall position={{ x: 0, y: -100 }} />
       <CurrentScore score={15} />
       <Heart position={{ x: -300, y: 35 }} />
       {!props.gameState.started && (
@@ -91,7 +93,8 @@ Canvas.propTypes = {
       name: PropTypes.string.isRequired,
       picture: PropTypes.string.isRequired
     })
-  )
+  ),
+  shoot: PropTypes.func.isRequired
 };
 
 Canvas.defaultProps = {

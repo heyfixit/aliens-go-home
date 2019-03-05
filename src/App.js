@@ -74,6 +74,8 @@ class App extends Component {
     window.onresize();
   }
 
+  shoot = () => this.props.shoot(this.canvasMousePosition);
+
   trackMouse = event => {
     this.canvasMousePosition = getCanvasPosition(event);
   };
@@ -87,6 +89,7 @@ class App extends Component {
         trackMouse={this.trackMouse}
         gameState={this.props.gameState}
         startGame={this.props.startGame}
+        shoot={this.shoot}
       />
     );
   }
@@ -125,7 +128,8 @@ App.propTypes = {
       name: PropTypes.string.isRequired,
       picture: PropTypes.string.isRequired
     })
-  )
+  ),
+  shoot: PropTypes.func.isRequired
 };
 
 App.defaultProps = {
